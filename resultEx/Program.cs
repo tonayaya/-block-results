@@ -3,31 +3,32 @@
 // длина которых меньше, либо равна 3 символам. 
 
 
-Console.WriteLine ("Написать программу, которая из имеющегося массива строк формирует массив из строк, длина которых меньше либо равна 3 символам.");
-Console.WriteLine ("Надо: [hello, 2 , world , :-)]");
-string[] array1 = new string[4] {"hello", "2" , "world" , ":-)"} ;
-string[] array2 = new string[array1.Length];
-void SecondArrayWithIF(string[] array1, string[] array2)
+string[] source = { "единицы", "десятки", "сотни", "тысячи", "1", ":-)", "New York", "-2", "Windows" };
+void PrintArray(string[] m)
 {
-    int count = 0;
-    for (int i = 0; i < array1.Length; i++)
-    {
-    if(array1[i].Length <= 3)
-        {
-        array2[count] = array1[i];
-        count++;
-        }
-    }
+for (int x = 0; x < m.Length; x++)
+Console.Write($"\"{m[x]}\" ");
+Console.WriteLine();
 }
-void PrintArray(string[] array)
+string[] copyStringsBelowOrEqual3InNewArray(string[] strArray)
+{
+int k = 0;
+for (int i = 0; i < strArray.Length; i++)
+if (strArray[i].Length <= 3) k++;
+string[] newArray = new string[k];
+k = 0;
+for (int i = 0; i < strArray.Length; i++)
+if (strArray[i].Length <= 3) newArray[k++]=strArray[i];
+return newArray;
+}
 
-{
-    Console.Write ("Результат: [ ");
-    for (int i = 0; i < array.Length; i++)
-    {
-        Console.Write($"{array[i]}");
-    }
-    Console.Write ("]");
-}
-SecondArrayWithIF(array1, array2);
-PrintArray(array2);
+
+Console.WriteLine("Программа создания нового массива и копирования в него строк длиной <=3");
+Console.WriteLine("Исходный массив строк:");
+PrintArray(source);
+
+string[] target = copyStringsBelowOrEqual3InNewArray(source);
+
+Console.WriteLine("Результирующий массив строк:");
+PrintArray(target);
+Console.WriteLine();
